@@ -22,9 +22,11 @@ CREATE TABLE users (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
     number VARCHAR(15) NOT NULL,
     location VARCHAR(255),
     college_id BIGINT NOT NULL REFERENCES college(id)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- 3. tasks — depends on users (self-referencing FK: buyer/seller)
