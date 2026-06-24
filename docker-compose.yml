@@ -1,0 +1,34 @@
+# services: -> Defines the different containers that make up your application. We have two: api and db.
+services:
+  api:
+    # build: . -> Tells Docker to build the api container using the Dockerfile in the current directory (.)
+    build: .
+    ports:
+      - "8000:5000"
+    # volumes: - .:/app ->  This is a "bind mount". It links your physical project folder to the /app folder inside the container. If you change a file on your computer, it updates inside the container instantly
+    volumes:
+      - .:/app
+      - /app/node_modules #An intentional exception to the rule above ,It tells Docker not to overwrite the container's internal node_modules (where node is installed) folder with your local empty one.(where node is not installed)
+    environment:
+      - DATABASE_URL=postgres://postgres:secretpass@db:5432/mydb
+    # depends_on: - db ->  Tells Docker to start the db container before starting the api container.
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secretpass
+      - POSTGRES_DB=mydb
+    # postgres_data:/var/lib/postgresql/data: Maps a persistent Docker storage space (a volume) to where PostgreSQL saves data.
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+
+#volumes: ->  tells Docker to carve out a secure, permanent storage space on your physical computer’s hard drive that is managed entirely by Docker
+volumes:
+  postgres_data:
