@@ -1,0 +1,18 @@
+import pool from '../config/db.js';
+
+export const findUserByEmail = async (email) => {
+    const query = `SELECT * FROM users
+    WHERE email = $1 ; `;
+    const { rows } = await pool.qeury(query, [email]);
+    return rows[0];
+};
+
+export const createUser = async(userData) => {
+    const { name, email,password_hash ,role,  number, location, college_id } = userData;
+    const query = `INSERT INTO users (name , email ,password_hash ,role,  number , location , college_id)
+    VALUES ($1 , $2 , $3 , $4 ,$5 , $6) 
+    RETURN id , name ,email , number , location , college_id;`;
+    const values = [name, email , password_hash ,role, number, location, college_id];
+    const { rows } = await pool.query(query, values);
+    return rows[0];
+};

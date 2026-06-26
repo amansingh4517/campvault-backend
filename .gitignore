@@ -1,0 +1,44 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data / Caches
+.pnp
+.pnp.js
+.node_modules_assets
+.npm
+.eslintcache
+.v8flags
+.node-xml
+.fseventsd
+
+# Dependency directories (Docker handles this internally now)
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# 🌟 CRITICAL: IDE / Editor Configs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# 🌟 CRITICAL: Environment Secrets & Configurations
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Docker local data overrides (if applicable)
+.docker/

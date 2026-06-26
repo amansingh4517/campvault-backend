@@ -6,6 +6,8 @@ CREATE TYPE item_condition AS ENUM ('new', 'like_new', 'good', 'fair', 'poor');
 CREATE TYPE item_stage AS ENUM ('listed', 'reserved', 'completed', 'cancelled');
 CREATE TYPE transaction_status AS ENUM ('holding', 'released', 'refunded');
 CREATE TYPE attachment_filetype AS ENUM ('image', 'pdf', 'doc', 'video', 'other');
+CREATE TYPE user_role AS ENUM ('student', 'admin');
+
 
 -- ---------- Tables (in dependency order) ----------
 
@@ -23,6 +25,7 @@ CREATE TABLE users (
     name VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
+    role user_role DEFAULT 'student',
     number VARCHAR(15) NOT NULL,
     location VARCHAR(255),
     college_id BIGINT NOT NULL REFERENCES college(id)
