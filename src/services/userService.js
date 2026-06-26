@@ -1,4 +1,4 @@
-import * as userRepository from "../repositories/userRepository";
+import * as userRepository from "../repositories/userRepository.js";
 import bcrypt from "bcrypt";
 
 export const registerUser = async (userData) => {

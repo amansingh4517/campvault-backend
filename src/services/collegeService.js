@@ -1,4 +1,4 @@
-import * as collegeRepository from "../repositories/collegeRepository";
+import * as collegeRepository from "../repositories/collegeRepository.js";
 
 export const registerCollege = async (collegeData) => {
     const {name , location , domain} = collegeData;

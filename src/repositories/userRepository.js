@@ -3,7 +3,7 @@ import pool from '../config/db.js';
 export const findUserByEmail = async (email) => {
     const query = `SELECT * FROM users
     WHERE email = $1 ; `;
-    const { rows } = await pool.qeury(query, [email]);
+    const { rows } = await pool.query(query, [email]);
     return rows[0];
 };
 

@@ -28,7 +28,7 @@ CREATE TABLE users (
     role user_role DEFAULT 'student',
     number VARCHAR(15) NOT NULL,
     location VARCHAR(255),
-    college_id BIGINT NOT NULL REFERENCES college(id)
+    college_id BIGINT NOT NULL REFERENCES college(id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
