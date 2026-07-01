@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import userRouter from './routes/userRoute.js';
+import { errorHandler } from './middleware/errorHandler.js';
 
 
 const app = express();
@@ -14,6 +15,9 @@ app.get('/health', (req, res) => {
 
 // app.use() matches the prefix path: It tells Express, "Hey, any incoming request that starts with /api/users (regardless of whether it's a GET, POST, PUT, or DELETE) should be handed over to the userRouter.
 app.use('/api/v1/users' , userRouter );
+
+// Error Handling Middleware
+app.use(errorHandler);
 
 
 export default app;
