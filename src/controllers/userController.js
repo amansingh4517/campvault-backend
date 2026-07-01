@@ -1,6 +1,6 @@
 import * as userService from '../services/userService.js'
 
-export const register = async (req , res) => {
+export const register = async (req , res , next) => {
     try{
         const {name , email , password , number , college_id} = req.body;
 
@@ -15,8 +15,9 @@ export const register = async (req , res) => {
             user : newUser
         });
     }
+
     catch (error){
-        const statusCode = error.statusCode || 500;
-        res.status(statusCode).json({error : error.message || "Internal server error"})
+        return next(error);
     }
+
 };

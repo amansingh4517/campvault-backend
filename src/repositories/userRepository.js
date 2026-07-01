@@ -10,8 +10,8 @@ export const findUserByEmail = async (email) => {
 export const createUser = async(userData) => {
     const { name, email,password_hash ,role,  number, location, college_id } = userData;
     const query = `INSERT INTO users (name , email ,password_hash ,role,  number , location , college_id)
-    VALUES ($1 , $2 , $3 , $4 ,$5 , $6) 
-    RETURN id , name ,email , number , location , college_id;`;
+    VALUES ($1 , $2 , $3 , $4 ,$5 , $6 , $7) 
+    RETURNING id , name ,email , number , location , college_id;`;
     const values = [name, email , password_hash ,role, number, location, college_id];
     const { rows } = await pool.query(query, values);
     return rows[0];

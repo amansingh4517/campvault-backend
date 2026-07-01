@@ -27,6 +27,11 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d mydb"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
 
 
 #volumes: ->  tells Docker to carve out a secure, permanent storage space on your physical computer’s hard drive that is managed entirely by Docker

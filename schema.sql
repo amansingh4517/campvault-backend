@@ -16,7 +16,7 @@ CREATE TABLE college (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     location VARCHAR(255),
-    domain VARCHAR(100) NOT NULL UNIQUE
+    domain VARCHAR(100) UNIQUE
 );
 
 -- 2. users — depends on college
