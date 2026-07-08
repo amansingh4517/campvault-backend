@@ -15,8 +15,13 @@ CREATE TYPE user_role AS ENUM ('student', 'admin');
 CREATE TABLE college (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    location VARCHAR(255),
-    domain VARCHAR(100) UNIQUE
+    domain VARCHAR(100) UNIQUE,
+    address VARCHAR(255),
+    city VARCHAR(100) NOT NULL,
+    state VARCHAR(100) NOT NULL,
+    pin_code VARCHAR(20),
+    country VARCHAR(100) DEFAULT 'India',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- 2. users — depends on college

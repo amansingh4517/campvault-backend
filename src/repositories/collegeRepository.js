@@ -1,12 +1,12 @@
 import pool from '../config/db.js';
 
-export const createCollege = async (name , location , domain) => {
+export const createCollege = async (name , domain , address , city ,state , pin_code , country) => {
     const query = `
-    INSERT INTO college (name , location , domain) 
-    VALUES ($1 , $2 , $3)
-    RETURNING *;
+    INSERT INTO college (name , domain , address , city , state , pin_code , country) 
+    VALUES ($1 , $2 , $3 , $4 , $5 , $6 , $7 )
+    RETURNING id , name , city , state;
     `;
-    const values = [name , location , domain];
+    const values = [name , domain , address , city ,state , pin_code , country];
     const {rows} = await pool.query(query , values);
     return rows[0];
 };
