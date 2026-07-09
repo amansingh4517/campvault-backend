@@ -16,3 +16,9 @@ export const getAllColleges = async() => {
     const {rows} = await pool.query(query);
     return rows;
 };
+
+export const findCollegeByDomain = async (domain) => {
+    const query = `SELECT FROM college where domain = $1;`
+    const {rows} = await pool.query(query , [domain]);
+    return rows[0];
+};

@@ -8,7 +8,7 @@ export const registerSchema = z.object({
     city: z.string(),
     state: z.string(),
     pin_code: z.string().length(6, "Enter 6 digit pin code"),
-    country: z.string()
+    country: z.string().default("India")
 });
 
 export const registerCollege = async (req, res, next) => {
@@ -26,9 +26,7 @@ export const registerCollege = async (req, res, next) => {
 
         const cleanData = validate.data;
 
-        
-
-        const collegeData = collegeService.registerCollege(cleanData);
+        const collegeData = await collegeService.registerCollege(cleanData);
 
         return res.status(201).json({
             success: true,
