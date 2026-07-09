@@ -17,6 +17,6 @@ export const registerCollege = async (collegeData) => {
     return await collegeRepository.createCollege(name ,  domain , address , city ,state , pin_code , country);
 };
 
-export const fetchAllColleges = async () => {
+export const getAllColleges = async () => {
    return await collegeRepository.getAllColleges();
 };

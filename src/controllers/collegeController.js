@@ -38,3 +38,19 @@ export const registerCollege = async (req, res, next) => {
     }
     
 }
+
+
+export const getAllCollege = async (req , res , next) => {
+    try{
+        const colleges = await collegeService.getAllColleges();
+
+        res.status(200).json({
+            success : true,
+            length : colleges.length,
+            data : colleges
+        })
+    }
+    catch (error) {
+        return next(error);
+    }
+}

@@ -68,5 +68,5 @@ export const loginUser = async (loginData ) => {
         token,
         user: sanitizedUser
     };
-
+    
 };
