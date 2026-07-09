@@ -1,4 +1,5 @@
 import * as userRepository from "../repositories/userRepository.js";
+import * as collegeRepository from "../repositories/collegeRepository.js"
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -12,6 +13,15 @@ export const registerUser = async (userData) => {
         const error = new Error("User Already Registered");
         error.statusCode = 400;
         error.message = "User Already Registered";
+        throw error;
+    }
+
+    const existingCollege = await collegeRepository.findCollegeById(college_id);
+
+    if(!existingCollege){
+        const error = new Error("The selected college does not exist in CampVault.");
+        error.statusCode = 404;
+        error.message = "The selected college does not exist in CampVault.";
         throw error;
     }
 
@@ -68,5 +78,5 @@ export const loginUser = async (loginData ) => {
         token,
         user: sanitizedUser
     };
-    
+
 };
